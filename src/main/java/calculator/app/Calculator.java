@@ -1,6 +1,6 @@
 package calculator.app;
 
-public class Main {
+public class Calculator {
 
     public Integer addition(Integer a, Integer b) {
         return a + b;
@@ -14,8 +14,10 @@ public class Main {
         return a * b;
     }
 
-    public Integer division(Integer a, Integer b) {
-        if (b == 0) throw new ArithmeticException("Division by zero");
-        return a / b;
+    public Double division(Integer a, Integer b) {
+        if (b == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
+        return 1.0 * a / b;
     }
 }

@@ -4,15 +4,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class MainTest {
+class CalculatorTest {
 
-    private static Main main;
+    private static Calculator calculator;
 
     @BeforeAll
     static void setMain() {
-        main = new Main();
+        calculator = new Calculator();
     }
 
     @Test
@@ -21,11 +22,13 @@ class MainTest {
         //given
         Integer a = 10;
         Integer b = 5;
-        Integer expectedResult = 15;
+        Integer expected = 15;
+
         //when
-        Integer obtainedResult = main.addition(a, b);
+        Integer actual = calculator.addition(a, b);
+
         //then
-        assertEquals(expectedResult, obtainedResult);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -34,11 +37,13 @@ class MainTest {
         //given
         Integer a = 10;
         Integer b = 5;
-        Integer expectedResult = 5;
+        Integer expected = 5;
+
         //when
-        Integer obtainedResult = main.subtraction(a, b);
+        Integer actual = calculator.subtraction(a, b);
+
         //then
-        assertEquals(expectedResult, obtainedResult);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -47,11 +52,13 @@ class MainTest {
         //given
         Integer a = 10;
         Integer b = 5;
-        Integer expectedResult = 50;
+        Integer expected = 50;
+
         //when
-        Integer obtainedResult = main.multiplication(a, b);
+        Integer actual = calculator.multiplication(a, b);
+
         //then
-        assertEquals(expectedResult, obtainedResult);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -60,11 +67,13 @@ class MainTest {
         //given
         Integer a = 10;
         Integer b = 5;
-        Integer expectedResult = 2;
+        Double expected = 2.0;
+
         //when
-        Integer obtainedResult = main.division(a, b);
+        Double actual = calculator.division(a, b);
+
         //then
-        assertEquals(expectedResult, obtainedResult);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -73,9 +82,11 @@ class MainTest {
         //given
         Integer a = 10;
         Integer b = 0;
+
         //when
+        ArithmeticException exception = assertThrows(ArithmeticException.class, () -> calculator.division(a, b));
+
         //then
-        ArithmeticException exception = assertThrows(ArithmeticException.class, () -> main.division(a, b));
         assertEquals(exception.getMessage(), "Division by zero");
     }
 }
